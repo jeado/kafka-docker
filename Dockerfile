@@ -1,10 +1,13 @@
-FROM ubuntu:trusty
+FROM java:8-jdk
 
-MAINTAINER Wurstmeister 
+MAINTAINER Jeado Ko <jeado@bitfinder.co>
 
-ENV KAFKA_VERSION="0.8.2.1" SCALA_VERSION="2.10"
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
 
-RUN apt-get update && apt-get install -y unzip openjdk-6-jdk wget curl git docker.io jq
+ENV KAFKA_VERSION="0.9.0.0" SCALA_VERSION="2.11"
+
+RUN apt-get update && apt-get install -y unzip wget curl git docker.io jq net-tools
 
 ADD download-kafka.sh /tmp/download-kafka.sh
 RUN /tmp/download-kafka.sh
